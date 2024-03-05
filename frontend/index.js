@@ -1,9 +1,14 @@
 import Card from './components/Card';
+import { BACKUP_BDD } from './src/backup_bdd';
+
 const getAnimeList = async () => {
   try {
-    let data = await fetch('http://localhost:3000/api/v1/anime/').then((res) =>
-      res.json()
-    );
+    let data = await fetch(
+      'https://anime-list-pi.vercel.app/api/v1/anime/'
+    ).then((res) => res.json());
+    if (data.length === 0) {
+      data = await postBackupAnime();
+    }
     showContent(data);
     return data;
   } catch (error) {
@@ -11,6 +16,25 @@ const getAnimeList = async () => {
   }
 };
 getAnimeList();
+
+const postBackupAnime = async () => {
+  try {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(BACKUP_BDD), // Convierte el array a formato JSON
+    };
+    let data = await fetch(
+      'https://anime-list-pi.vercel.app/api/v1/anime/load_bdd',
+      options
+    ).then((res) => res.json());
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
 
 const showContent = (data) => {
   const h1 = document.createElement('h1');

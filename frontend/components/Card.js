@@ -5,7 +5,7 @@ const Card = (anime) => {
   const deleteAnime = async () => {
     try {
       let data = await fetch(
-        `http://localhost:3000/api/v1/anime/${anime._id}`,
+        `https://anime-list-pi.vercel.app/api/v1/anime/${anime._id}`,
         {
           method: 'DELETE',
         }
