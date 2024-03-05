@@ -4,7 +4,7 @@ import { BACKUP_BDD } from './src/backup_bdd';
 const getAnimeList = async () => {
   try {
     let data = await fetch(
-      'https://anime-list-pi.vercel.app/api/v1/anime/'
+      'https://anime-list-pi.vercel.app/api/v1/anime'
     ).then((res) => res.json());
     if (data.length === 0) {
       data = await postBackupAnime();
