@@ -26,7 +26,7 @@ export const BACKUP_BDD = [
   {
     name: 'Blue Lock',
     image:
-      'https://static.wikia.nocookie.net/doblaje/images/f/f0/Blue_Lock_-_Poster.jpg/revision/latest?cb=20220927024449&path-prefix=es',
+      'https://m.media-amazon.com/images/I/718vfrOBZhL._AC_UF894,1000_QL80_.jpg',
     category: ['Sports', 'Drama'],
     episodes: 24,
     seen: 'Not yet 😔',
