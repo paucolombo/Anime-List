@@ -1,5 +1,5 @@
-import Card from 'frontend/components/Card';
-import { BACKUP_BDD } from 'frontend/src/backup_bdd';
+import Card from './components/Card';
+import { BACKUP_BDD } from './src/backup_bdd';
 
 const getAnimeList = async () => {
   try {
