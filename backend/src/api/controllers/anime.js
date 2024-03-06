@@ -32,9 +32,27 @@ const postAnime = async (req, res, next) => {
     const animeSaved = await newAnime.save();
     return res.status(201).json(animeSaved);
   } catch (error) {
+    console.log('error ', error);
     return res.status(400).json('Error in the request');
   }
 };
+const postAllAnime = async (req, res, next) => {
+  try {
+    const animeList = await Promise.all(
+      req.body.map(async (anime) => {
+        console.log('ANIME ', anime);
+        const newAnime = await new Anime(anime);
+        const animeSaved = await newAnime.save();
+        return animeSaved;
+      })
+    );
+    return res.status(201).json(animeList);
+  } catch (error) {
+    console.log('error ', error);
+    return res.status(400).json('Error in the request');
+  }
+};
+
 const putAnime = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -45,6 +63,7 @@ const putAnime = async (req, res, next) => {
     });
     return res.status(200).json(animeUpdated);
   } catch (error) {
+    console.log('error ', error);
     return res.status(400).json('Error in the request');
   }
 };
@@ -59,9 +78,10 @@ const deleteAnime = async (req, res, next) => {
 };
 module.exports = {
   getAnime,
+  postAnime,
   getAnimeByCategory,
   getAnimeById,
-  postAnime,
   putAnime,
   deleteAnime,
+  postAllAnime,
 };
